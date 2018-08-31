@@ -9,18 +9,14 @@
 import XCTest
 
 class tictactoeUITests: XCTestCase {
-        
+    var board: Board?
     override func setUp() {
         super.setUp()
+        board = Board()
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
@@ -28,9 +24,47 @@ class tictactoeUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    /*
+     * This test will simluate and verify X is a winner
+    */
+    func testOneRowCrossTopForX() {
+        for i in 0..<GAME_SIZE {
+            board?.mark(row: 0, col: i)
+            if i != (GAME_SIZE - 1) {
+                XCTAssertNotEqual(board?.winner, board?.currentTurn)
+            }
+            else {
+                XCTAssertEqual(Player.X, board?.winner)
+            }
+            let j = i + 1
+            if (j < GAME_SIZE) {
+                board?.mark(row: j, col: i)
+                XCTAssertNotEqual(board?.winner, board?.currentTurn)
+            }
+        }
+    }
+    
+    /*
+     * This test will simulate and verify O is the winner.
+     */
+    func testGameSizeInRowDiagonalFromTopLeftToBottomForO() {
+        board?.mark(row: 0, col: 1)
+        XCTAssert(board?.winner != board?.currentTurn)
+        for i in 0..<GAME_SIZE {
+            board?.mark(row: i, col: i)
+            if i != GAME_SIZE - 1 {
+                XCTAssertNotEqual(board?.winner, board?.currentTurn)
+            } else {
+                XCTAssertEqual(board?.winner, Player.O)
+            }
+            
+            let j = i + 1
+            if j < GAME_SIZE {
+                board?.mark(row: j, col: i)
+                XCTAssertNotEqual(board?.winner, board?.currentTurn)
+            }
+            
+        }
     }
     
 }

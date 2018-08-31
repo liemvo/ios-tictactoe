@@ -14,6 +14,12 @@
 		44AE73AA21395A3100D69968 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AE73A821395A3100D69968 /* LaunchScreen.storyboard */; };
 		44AE73B521395A3200D69968 /* tictactoeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73B421395A3200D69968 /* tictactoeTests.swift */; };
 		44AE73C021395A3200D69968 /* tictactoeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73BF21395A3200D69968 /* tictactoeUITests.swift */; };
+		44AE73D121395E8100D69968 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73D021395E8100D69968 /* Player.swift */; };
+		44AE73D321395FD000D69968 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73D221395FD000D69968 /* Cell.swift */; };
+		44AE73D52139609400D69968 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73D42139609400D69968 /* Board.swift */; };
+		44AE73D62139CAF500D69968 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73D42139609400D69968 /* Board.swift */; };
+		44AE73D72139CD8A00D69968 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73D021395E8100D69968 /* Player.swift */; };
+		44AE73D82139CD8E00D69968 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE73D221395FD000D69968 /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,9 @@
 		44AE73BB21395A3200D69968 /* tictactoeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tictactoeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44AE73BF21395A3200D69968 /* tictactoeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tictactoeUITests.swift; sourceTree = "<group>"; };
 		44AE73C121395A3200D69968 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44AE73D021395E8100D69968 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		44AE73D221395FD000D69968 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		44AE73D42139609400D69968 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +106,9 @@
 		44AE739E21395A2F00D69968 /* tictactoe */ = {
 			isa = PBXGroup;
 			children = (
+				44AE73CF21395E5C00D69968 /* model */,
 				44AE739F21395A2F00D69968 /* AppDelegate.swift */,
-				44AE73A121395A2F00D69968 /* ViewController.swift */,
+				44AE73CE21395E4C00D69968 /* controller */,
 				44AE73A321395A2F00D69968 /* Main.storyboard */,
 				44AE73A621395A3100D69968 /* Assets.xcassets */,
 				44AE73A821395A3100D69968 /* LaunchScreen.storyboard */,
@@ -123,6 +133,24 @@
 				44AE73C121395A3200D69968 /* Info.plist */,
 			);
 			path = tictactoeUITests;
+			sourceTree = "<group>";
+		};
+		44AE73CE21395E4C00D69968 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				44AE73A121395A2F00D69968 /* ViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		44AE73CF21395E5C00D69968 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				44AE73D021395E8100D69968 /* Player.swift */,
+				44AE73D221395FD000D69968 /* Cell.swift */,
+				44AE73D42139609400D69968 /* Board.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +285,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				44AE73A221395A2F00D69968 /* ViewController.swift in Sources */,
+				44AE73D321395FD000D69968 /* Cell.swift in Sources */,
+				44AE73D52139609400D69968 /* Board.swift in Sources */,
+				44AE73D121395E8100D69968 /* Player.swift in Sources */,
 				44AE73A021395A2F00D69968 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +304,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44AE73D62139CAF500D69968 /* Board.swift in Sources */,
+				44AE73D82139CD8E00D69968 /* Cell.swift in Sources */,
+				44AE73D72139CD8A00D69968 /* Player.swift in Sources */,
 				44AE73C021395A3200D69968 /* tictactoeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
