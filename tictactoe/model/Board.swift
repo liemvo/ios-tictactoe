@@ -26,7 +26,7 @@ struct Board {
         restart()
     }
 
-    
+
     mutating func restart() {
         clearCells()
         self.winner = Player.K;
