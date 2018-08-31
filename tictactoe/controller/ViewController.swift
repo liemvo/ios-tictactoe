@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         model = Board()
+        resetGame()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,22 +35,47 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onCellTapped(_ sender: UIButton) {
+        if !resultGroupView.isHidden{
+            return
+        }
+        let rowTemp = sender.tag%100
+        let row = rowTemp/10
+        let col = rowTemp%10
+        
+        let playerThatMoved = model?.mark(row: row, col: col)
+        if playerThatMoved != Player.K {
+            sender.setTitle(playerThatMoved?.rawValue, for: .normal)
+             print("Current button tag \(sender.tag)")
+            if model?.winner != Player.K{
+                resultGroupView.isHidden = false
+                playerLabel.text = playerThatMoved?.rawValue
+                resultMessage.text = "Winner"
+            } else if (model?.isFull())! && model?.winner == Player.K {
+                resultGroupView.isHidden = false
+                resultMessage.text = "Game draws"
+            }
+        }
         
     }
     
-    @IBAction func reset(_ sender: UIBarButtonItem) {
+    func resetGame() {
         resultGroupView.isHidden = true
         playerLabel.text = ""
         resultMessage.text = ""
-        button00.titleLabel?.text = ""
-        button01.titleLabel?.text = ""
-        button02.titleLabel?.text = ""
-        button10.titleLabel?.text = ""
-        button11.titleLabel?.text = ""
-        button12.titleLabel?.text = ""
-        button20.titleLabel?.text = ""
-        button21.titleLabel?.text = ""
-        button22.titleLabel?.text = ""
+        button00.setTitle("", for: .normal)
+        button01.setTitle("", for: .normal)
+        button02.setTitle("", for: .normal)
+        button10.setTitle("", for: .normal)
+        button11.setTitle("", for: .normal)
+        button12.setTitle("", for: .normal)
+        button20.setTitle("", for: .normal)
+        button21.setTitle("", for: .normal)
+        button22.setTitle("", for: .normal)
+        model?.restart()
+    }
+    
+    @IBAction func reset(_ sender: UIBarButtonItem) {
+        resetGame()
     }
     
 }
