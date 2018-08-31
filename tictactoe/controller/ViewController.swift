@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, GameView{
+    
     @IBOutlet weak var button00: UIButton!
     @IBOutlet weak var button01: UIButton!
     @IBOutlet weak var button02: UIButton!
@@ -23,11 +23,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var playerLabel: UILabel!
     @IBOutlet weak var resultMessage: UILabel!
     
-    var model: Board?
+    var presenter: GamePresenter?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        model = Board()
-        resetGame()
+        presenter = TictactoePresenter(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,41 +41,40 @@ class ViewController: UIViewController {
         let rowTemp = sender.tag%100
         let row = rowTemp/10
         let col = rowTemp%10
+        presenter?.cellTapped(row, col)
         
-        let playerThatMoved = model?.mark(row: row, col: col)
-        if playerThatMoved != Player.K {
-            sender.setTitle(playerThatMoved?.rawValue, for: .normal)
-             print("Current button tag \(sender.tag)")
-            if model?.winner != Player.K{
-                resultGroupView.isHidden = false
-                playerLabel.text = playerThatMoved?.rawValue
-                resultMessage.text = "Winner"
-            } else if (model?.isFull())! && model?.winner == Player.K {
-                resultGroupView.isHidden = false
-                resultMessage.text = "Game draws"
-            }
+    }
+    
+    @IBAction func resetTapped(_ sender: UIBarButtonItem) {
+        presenter?.reset()
+    }
+    
+    func restartGame(_ showResult: Bool, _ defaultMessage: String) {
+        resultGroupView.isHidden = showResult
+        playerLabel.text = defaultMessage
+        resultMessage.text = defaultMessage
+        button00.setTitle(defaultMessage, for: .normal)
+        button01.setTitle(defaultMessage, for: .normal)
+        button02.setTitle(defaultMessage, for: .normal)
+        button10.setTitle(defaultMessage, for: .normal)
+        button11.setTitle(defaultMessage, for: .normal)
+        button12.setTitle(defaultMessage, for: .normal)
+        button20.setTitle(defaultMessage, for: .normal)
+        button21.setTitle(defaultMessage, for: .normal)
+        button22.setTitle(defaultMessage, for: .normal)
+    }
+    
+    func updateCellText(_ row: Int, _ col: Int, _ text: String) {
+        let tag = 100 + row*10 + col
+        if let cellButton = self.view.viewWithTag(tag) as! UIButton? {
+            cellButton.setTitle(text, for: .normal)
         }
-        
     }
     
-    func resetGame() {
-        resultGroupView.isHidden = true
-        playerLabel.text = ""
-        resultMessage.text = ""
-        button00.setTitle("", for: .normal)
-        button01.setTitle("", for: .normal)
-        button02.setTitle("", for: .normal)
-        button10.setTitle("", for: .normal)
-        button11.setTitle("", for: .normal)
-        button12.setTitle("", for: .normal)
-        button20.setTitle("", for: .normal)
-        button21.setTitle("", for: .normal)
-        button22.setTitle("", for: .normal)
-        model?.restart()
-    }
-    
-    @IBAction func reset(_ sender: UIBarButtonItem) {
-        resetGame()
+    func updateGameStatus(_ showResult: Bool, _ gameMessage: String, _ winner: String) {
+        resultGroupView.isHidden = showResult
+        resultMessage.text = gameMessage
+        playerLabel.text = winner
     }
     
 }

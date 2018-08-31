@@ -189,7 +189,7 @@
                     <navigationItem key="navigationItem" title="Tictactoe" id="lpV-cL-2ET">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="UL8-aW-Do6">
                             <connections>
-                                <action selector="reset:" destination="BYZ-38-t0r" id="T5G-35-L4u"/>
+                                <action selector="resetTapped:" destination="BYZ-38-t0r" id="qdi-7d-Lne"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
